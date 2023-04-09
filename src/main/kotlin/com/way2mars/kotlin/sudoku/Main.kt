@@ -2,29 +2,32 @@
 package com.way2mars.kotlin.sudoku
 
 import java.io.File
-import javax.xml.stream.events.Characters
+
 
 fun main() {
-    val input = readInput()
+    val input = readFile("input.txt")
 
-    print(input)
+    val solution = readFile("solution.txt")
+
+    println(input)
+    println(solution)
 }
 
-fun readInput() : Map<Pair<Int, Int>, Int> {
-    val input = File("input.txt")
+fun readFile(dataFileName: String) : Map<Coordinate, Int> =
+    File(dataFileName)
         .readLines()
         .withIndex()
-        .flatMap { indexedValue ->
-            val xCoordinate = indexedValue.index
-            indexedValue.value.toCharArray().withIndex()
+        .flatMap { indexedString ->
+            val xCoordinate = indexedString.index
+            indexedString.value.toCharArray().withIndex()
                 .filter { indexedChar -> indexedChar.value != '.' }
                 .map { indexedChar ->
                     val yCoordinate = indexedChar.index
+                    val coordinate = Coordinate(xCoordinate, yCoordinate)
                     val number = Character.getNumericValue(indexedChar.value)
-                    (xCoordinate to yCoordinate) to number
+                    coordinate to number
                 }
         }
         .toMap()
 
-    return input
-}
+
