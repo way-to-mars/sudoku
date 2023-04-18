@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b2b04b3-6f8d-436c-a2ec-46cc406ec82a" name="Changes" comment="commit #2">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/way2mars/kotlin/sudoku/ConditionState.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="5b2b04b3-6f8d-436c-a2ec-46cc406ec82a" name="Changes" comment="commit #3">
+      <change afterPath="$PROJECT_DIR$/input2x2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/way2mars/kotlin/sudoku/SudokuCell.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/way2mars/kotlin/sudoku/SudokuTable.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/way2mars/kotlin/sudoku/Coordinate.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/way2mars/kotlin/sudoku/Coordinate.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/way2mars/kotlin/sudoku/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/way2mars/kotlin/sudoku/Main.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,8 +62,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Enum" />
-        <option value="Kotlin Class" />
         <option value="Kotlin Interface" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -207,12 +205,20 @@
       <option name="project" value="LOCAL" />
       <updated>1681052102585</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="commit #3">
+      <created>1681825521814</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1681825521814</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit #2" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit #2" />
+    <MESSAGE value="commit #3" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit #3" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
