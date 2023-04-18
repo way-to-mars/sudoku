@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b2b04b3-6f8d-436c-a2ec-46cc406ec82a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/solution.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/way2mars/kotlin/sudoku/Coordinate.kt" afterDir="false" />
+    <list default="true" id="5b2b04b3-6f8d-436c-a2ec-46cc406ec82a" name="Changes" comment="commit #2">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/way2mars/kotlin/sudoku/ConditionState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/way2mars/kotlin/sudoku/Coordinate.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/way2mars/kotlin/sudoku/Coordinate.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/way2mars/kotlin/sudoku/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/way2mars/kotlin/sudoku/Main.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +63,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Kotlin Enum" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Interface" />
       </list>
     </option>
   </component>
@@ -77,17 +81,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Console Font"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;proofread&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Greg\IdeaProjects\sudoku\src\main\kotlin\com\way2mars\kotlin\sudoku" />
@@ -196,7 +200,19 @@
       <option name="presentableId" value="Default" />
       <updated>1680941059527</updated>
     </task>
+    <task id="LOCAL-00001" summary="commit #2">
+      <created>1681052102585</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1681052102585</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="commit #2" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit #2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
