@@ -5,14 +5,17 @@ import java.io.File
 
 
 fun main() {
-    val input = readSudokuFile("input.txt")
-    val solution = readSudokuFile("solution.txt")
+//    val input = readSudokuFile("input.txt")
+//    val solution = readSudokuFile("solution.txt")
+//    val result = checkSolution(input, solution)
+//    println("Check status is $result")
+//    println(input)
+//    println(solution)
+    val sudoku1 = SudokuTable(4, "input2x2.txt")
+    sudoku1.solve()
 
-    val result = checkSolution(input, solution)
-
-    println("Check status is $result")
-    println(input)
-    println(solution)
+    val sudoku2 = SudokuTable(9, "input.txt")
+    sudoku2.solve()
 }
 
 fun checkSolution(input: Map<Coordinate, Int>, solution: Map<Coordinate, Int>): ConditionState{
