@@ -9,13 +9,13 @@ class SudokuCell(
     singleValue: Int
 ) {
     init{
-        val allowedDimensions = (2..16).map{ it*it }
+        val allowedDimensions: List<Int> = listOf(4, 9, 16)
         if (dimension !in allowedDimensions)
             throw IllegalArgumentException("Wrong dimension argument ${dimension}, must be one of the listed: $allowedDimensions")
     }
 
     private var values: MutableSet<Int> = when(singleValue) {
-       in 1..dimension -> mutableSetOf(singleValue)
+       in 0..dimension -> mutableSetOf(singleValue)
        else -> throw IllegalArgumentException("Out of range")
     }
 
@@ -24,12 +24,39 @@ class SudokuCell(
             values.add(i)
     }
 
-    val isFinal: Boolean = values.size == 1
-
-    fun dec(otherCell: SudokuCell){
-        if (otherCell.isFinal){
-            this.values.remove(otherCell.takeFirstElement())
+    val isFinal: Boolean
+        get(){
+            if (this.values.size == 1) return true
+            return false
         }
+
+
+    /**
+     *   If otherCell contains only one values {valueToRemove}
+     *   then removes it from {this.values} but only if exists here
+     *   Returns 1 if removing happened
+     *   otherwise returns 0
+     */
+    fun exclude(otherCell: SudokuCell): Int{
+        val isThisFinal = this.isFinal
+        val isArgumentFinal = otherCell.isFinal
+
+        // if both are final return 0
+        if (isThisFinal && isArgumentFinal) return 0
+
+        // if both are not final return 0
+        if (!isThisFinal && !isArgumentFinal) return 0
+
+        fun excludeValue(cell: SudokuCell, valueToRemove: Int) : Int{
+             if (cell.values.contains(valueToRemove)){
+                 cell.values.remove(valueToRemove)
+                 return 1
+             }
+             return 0
+        }
+
+        if (isThisFinal) return excludeValue(otherCell, this.takeFirstElement())
+        return excludeValue(this, otherCell.takeFirstElement())
     }
 
     private fun takeFirstElement(): Int{
@@ -44,7 +71,6 @@ class SudokuCell(
         return "<${values.size}?"
     }
 
-    fun toFullString(): String{
-        return values.toString()
-    }
+    fun toFullString(): String = values.toString()
+
 }

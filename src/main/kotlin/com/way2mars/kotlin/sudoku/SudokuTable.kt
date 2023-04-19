@@ -22,49 +22,93 @@ class SudokuTable(private val dimension: Int, fileName: String) {
                         }
                         val cell: SudokuCell = when(indexedChar.value) {
                             '.' -> SudokuCell(dimension)
-                            else -> SudokuCell(dimension, Character.getNumericValue(indexedChar.value))
+                           // else -> SudokuCell(dimension, Character.getNumericValue(indexedChar.value))
+                            else -> SudokuCell(dimension, charToInt(indexedChar.value))
                         }
                          coordinate to cell
                         }
                     }
             .toMap()
 
+    private fun charToInt(char: Char): Int{
+        when(dimension){
+            4, 9 -> return Character.getNumericValue(char)
+        //    16 -> return char.toString().toInt(radix = 16)
+            16 -> {
+                val str = char.toString()
+                val int = str.toInt(radix = 16)
+                return int
+            }
+            else -> return char.code
+        }
+    }
+
+    // check if the table is fulfilled
     private fun validateCells(): Boolean{
+        if (cells.size != dimension*dimension){
+            println("validateCells >> Error! Wrong dimension")
+            return false
+        }
         for (i in 0 until dimension)
             for (j in 0 until dimension) {
                 val coordinate = Coordinate(i, j)
                 if (!cells.containsKey(coordinate)) return false
             }
+        println("validateCells >> Ok!")
         return true
-    }  // check if the table is fulfilled
+    }
 
     fun solve(): Boolean{
         if (!validateCells()){
-            println("The table is incomplete!")
             println(this.toString())
             return false
         }
 
-        println("Given SUDOKU is:")
-        println(this.toString())
+        println("Given SUDOKU is:\n$this")
 
+        var iter = 0
+        var totalExcluded = 0
+        while (true){
+            val countExcluded = trimIteration()
+            iter++
+            totalExcluded += countExcluded
+            println("Iteration #$iter: $countExcluded numbers are excluded. Total #$totalExcluded numbers are excluded")
+            if (countExcluded==0) break
+        }
+        println("The solved SUDOKU is\n$this")
 
         return true
     }
 
-    fun trimCell(input: Map<Coordinate, Int>, solution: Map<Coordinate, Int>,
-                       coordinateGenerator: (Int) -> Coordinate): ConditionState{
+    fun trimIteration(): Int{
+        var result = 0
+        val delimiter = sqrt(dimension.toDouble()).toInt()
+        for(i in 0 until dimension){
+            result += trimCell { index -> Coordinate(x = i, y = index) }
+            result += trimCell { index -> Coordinate(x = index, y = i) }
+            // count quadrants from 0 = [0, 0]..[2, 2] to 8 = [6, 6]..[8, 8]
+            result += trimCell { index ->
+                val x = delimiter * (i / delimiter) + index / delimiter
+                val y = delimiter * (i % delimiter) + index % delimiter
+                Coordinate(x, y)
+            }
+        }
+        return result
+    }
+
+    fun trimCell(coordinateGenerator: (Int) -> Coordinate): Int{
+        var result = 0
         for( i in 0 until dimension){
             val checkedCoordinate = coordinateGenerator(i)
-            val checkedValue = cells[checkedCoordinate]
-            if (checkedValue!!.isFinal) continue
+            val checkedValue = cells[checkedCoordinate]!!
+           // if (checkedValue!!.isFinal) continue
             for(j in i+1 until dimension){
                 val comparedCoordinate = coordinateGenerator(j)
                 val comparedValue = cells[comparedCoordinate]!!
-                checkedValue.dec(comparedValue)
+                result += checkedValue.exclude(comparedValue)
             }
         }
-        return ConditionState.Ok
+        return result  // count of excluded numbers
     }
 
     override fun toString(): String {
@@ -74,12 +118,11 @@ class SudokuTable(private val dimension: Int, fileName: String) {
             for (j in 0 until dimension){
                 val coordinate = Coordinate(i, j)
                 result += cells[coordinate].toString()
-                if (j == this.dimension-1) result += "\n"   // end of line
+                result += if (j == this.dimension-1) "\n"   // end of line
                 else{
-                    if (j % delimiter == delimiter-1) result += "  " // double space for quadrants
-                    else result += " "
+                    if (j % delimiter == delimiter-1) "  " // double space for quadrants
+                    else " "
                 }
-
             }
             if ( (i < dimension-1) && (i % delimiter == delimiter-1) ) result += "\n" // extra EOL for quadrants
         }
