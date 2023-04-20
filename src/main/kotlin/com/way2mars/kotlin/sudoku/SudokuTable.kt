@@ -75,7 +75,7 @@ class SudokuTable(dim: Dimension, fileName: String) {
         var iter = 0
         var totalExcluded = 0
         while (true){
-            val countExcluded = trimIteration()
+            val countExcluded = excludingIteration()
             iter++
             totalExcluded += countExcluded
             println("Iteration #$iter: $countExcluded numbers are excluded. Total #$totalExcluded numbers are excluded")
@@ -86,14 +86,14 @@ class SudokuTable(dim: Dimension, fileName: String) {
         return true
     }
 
-    fun trimIteration(): Int{
+    private fun excludingIteration(): Int{
         var result = 0
         val delimiter = sqrt(dimension.toDouble()).toInt()
         for(i in 0 until dimension){
-            result += trimCell { index -> Coordinate(x = i, y = index) }
-            result += trimCell { index -> Coordinate(x = index, y = i) }
+            result += excludeCells { index -> Coordinate(x = i, y = index) }
+            result += excludeCells { index -> Coordinate(x = index, y = i) }
             // count quadrants from 0 = [0, 0]..[2, 2] to 8 = [6, 6]..[8, 8]
-            result += trimCell { index ->
+            result += excludeCells { index ->
                 val x = delimiter * (i / delimiter) + index / delimiter
                 val y = delimiter * (i % delimiter) + index % delimiter
                 Coordinate(x, y)
@@ -102,7 +102,7 @@ class SudokuTable(dim: Dimension, fileName: String) {
         return result
     }
 
-    fun trimCell(coordinateGenerator: (Int) -> Coordinate): Int{
+    private fun excludeCells(coordinateGenerator: (Int) -> Coordinate): Int{
         var result = 0
         for( i in 0 until dimension){
             val checkedCoordinate = coordinateGenerator(i)
