@@ -1,34 +1,19 @@
 package com.way2mars.kotlin.sudoku
 
-import kotlin.IllegalArgumentException
 
-const val DEFAULT_SUDOKU_SIZE = 9
+class SudokuCell(singleValue: Int) {
+    private var values = mutableSetOf(singleValue)
 
-class SudokuCell(
-    private val dimension: Int = DEFAULT_SUDOKU_SIZE,
-    singleValue: Int
-) {
-    init{
-        val allowedDimensions: List<Int> = listOf(4, 9, 16)
-        if (dimension !in allowedDimensions)
-            throw IllegalArgumentException("Wrong dimension argument ${dimension}, must be one of the listed: $allowedDimensions")
-    }
-
-    private var values: MutableSet<Int> = when(singleValue) {
-       in 0..dimension -> mutableSetOf(singleValue)
-       else -> throw IllegalArgumentException("Out of range")
-    }
-
-    constructor(dimension: Int = DEFAULT_SUDOKU_SIZE) : this(dimension, 1){
-        for (i in 2..dimension)
+    // Create a set of consecutive numbers [first .. last]
+    constructor(first: Int, last: Int) : this(first){
+        if (first >= last)
+            throw IllegalArgumentException("Error in SudokuCell constructor. Second argument must be more then first argument")
+        for (i in (first+1)..last)
             values.add(i)
     }
 
     val isFinal: Boolean
-        get(){
-            if (this.values.size == 1) return true
-            return false
-        }
+        get() = this.values.size == 1
 
 
     /**
@@ -66,11 +51,11 @@ class SudokuCell(
 
     override fun toString(): String {
         if (values.size == 1){
-            return values.toString()
+            return "[x${takeFirstElement().toString(16)}]"
         }
+        if (values.size < 10) return "<0${values.size}?"
         return "<${values.size}?"
     }
 
     fun toFullString(): String = values.toString()
-
 }

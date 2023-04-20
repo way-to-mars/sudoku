@@ -3,10 +3,28 @@ package com.way2mars.kotlin.sudoku
 import java.io.File
 import kotlin.math.sqrt
 
-class SudokuTable(private val dimension: Int, fileName: String) {
-    private val cells: Map<Coordinate, SudokuCell> = this.readSudokuFile(dimension, fileName)
+class SudokuTable(dim: Dimension, fileName: String) {
+    private val dimension = dim.getDimension()
+    private val minValue: Int = dim.getMinValue()
+    private val maxValue: Int = dim.getMaxValue()
+    private val cells: Map<Coordinate, SudokuCell> = this.readSudokuFile(fileName)
 
-    private fun readSudokuFile(dimension: Int, dataFileName: String) : Map<Coordinate, SudokuCell> =
+    // Explicitly define allowed dimensions for Sudoku as a range [min, max]
+    companion object{
+        class Dimension(
+            private val min: Int,
+            private val max: Int){
+                fun getDimension() = max - min + 1
+                fun getMinValue() = min
+                fun getMaxValue() = max
+        }
+
+        val FOUR = Dimension(1, 4) // 1, 2, 3 ,4
+        val NINE = Dimension(1, 9) // 1, 2, 3, 4, 5, 6, 7, 8, 9
+        val SIXTEEN = Dimension(0, 15) // 0, 1, 2, ... A, B, C, D ,E, F
+    }
+
+    private fun readSudokuFile(dataFileName: String) : Map<Coordinate, SudokuCell> =
         File(dataFileName)
             .readLines()
             .withIndex()
@@ -21,27 +39,15 @@ class SudokuTable(private val dimension: Int, fileName: String) {
                             return emptyMap()
                         }
                         val cell: SudokuCell = when(indexedChar.value) {
-                            '.' -> SudokuCell(dimension)
-                           // else -> SudokuCell(dimension, Character.getNumericValue(indexedChar.value))
-                            else -> SudokuCell(dimension, charToInt(indexedChar.value))
+                            '.' -> SudokuCell(minValue, maxValue)  // a dot symbol means unknown value of the cell
+                            else -> SudokuCell(
+                                indexedChar.value.toString().toInt(radix = 16) // read a value as a HEX string
+                            )
                         }
                          coordinate to cell
                         }
                     }
             .toMap()
-
-    private fun charToInt(char: Char): Int{
-        when(dimension){
-            4, 9 -> return Character.getNumericValue(char)
-        //    16 -> return char.toString().toInt(radix = 16)
-            16 -> {
-                val str = char.toString()
-                val int = str.toInt(radix = 16)
-                return int
-            }
-            else -> return char.code
-        }
-    }
 
     // check if the table is fulfilled
     private fun validateCells(): Boolean{
