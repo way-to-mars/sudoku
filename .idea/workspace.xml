@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b2b04b3-6f8d-436c-a2ec-46cc406ec82a" name="Changes" comment="commit #5">
+    <list default="true" id="5b2b04b3-6f8d-436c-a2ec-46cc406ec82a" name="Changes" comment="commit #6&#10;- dimension is now incapsulated in SudokuTable class as a companion object class with three presets: FOUR, NINE and SIXTEEN&#10;- SudokuCell class doesn't contain dimension property anymore&#10;- new constructors for SudokuCell: (primary) with a single value,&#10;  (b) with minimum and maximum values that creates a set of consecutive numbers from minimum to maximum (including both)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/way2mars/kotlin/sudoku/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/way2mars/kotlin/sudoku/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/way2mars/kotlin/sudoku/SudokuCell.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/way2mars/kotlin/sudoku/SudokuCell.kt" afterDir="false" />
@@ -226,7 +226,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681892534122</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="commit #6&#10;- dimension is now incapsulated in SudokuTable class as a companion object class with three presets: FOUR, NINE and SIXTEEN&#10;- SudokuCell class doesn't contain dimension property anymore&#10;- new constructors for SudokuCell: (primary) with a single value,&#10;  (b) with minimum and maximum values that creates a set of consecutive numbers from minimum to maximum (including both)">
+      <created>1681979081448</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1681979081448</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -234,7 +241,8 @@
     <MESSAGE value="commit #3" />
     <MESSAGE value="commit #4" />
     <MESSAGE value="commit #5" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit #5" />
+    <MESSAGE value="commit #6&#10;- dimension is now incapsulated in SudokuTable class as a companion object class with three presets: FOUR, NINE and SIXTEEN&#10;- SudokuCell class doesn't contain dimension property anymore&#10;- new constructors for SudokuCell: (primary) with a single value,&#10;  (b) with minimum and maximum values that creates a set of consecutive numbers from minimum to maximum (including both)" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit #6&#10;- dimension is now incapsulated in SudokuTable class as a companion object class with three presets: FOUR, NINE and SIXTEEN&#10;- SudokuCell class doesn't contain dimension property anymore&#10;- new constructors for SudokuCell: (primary) with a single value,&#10;  (b) with minimum and maximum values that creates a set of consecutive numbers from minimum to maximum (including both)" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
