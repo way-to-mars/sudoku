@@ -6,22 +6,12 @@ import java.io.File
 
 fun main() {
 
-    val sudoku1 = SudokuTable(SudokuTable.SIXTEEN, "input_16.txt")
-    sudoku1.solve()
+    val anew = SudokuTable2(SudokuTable2.NINE)
+    println(anew)
 
-    val sudoku2 = SudokuTable(SudokuTable.NINE, "input9x9_2.txt")
-    sudoku2.solve()
+    anew.loadFromFile("input.txt")
 
-    val sudoku3 = SudokuTable(SudokuTable.FOUR, "input2x2.txt")
-    sudoku3.solve()
-
-//    val a = SudokuCell(4, 12)
-//    val b = SudokuCell(100)
-//
-//    println("${a.toFullString()} and ${b.toFullString()} ==> $a & $b")
-//    b.exclude(a)
-//    println("${a.toFullString()} and ${b.toFullString()} ==> $a & $b")
-
+    println(anew)
 }
 
 fun checkSolution(input: Map<Coordinate, Int>, solution: Map<Coordinate, Int>): ConditionState{

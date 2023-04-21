@@ -19,9 +19,9 @@ class SudokuTable(dim: Dimension, fileName: String) {
                 fun getMaxValue() = max
         }
 
-        val FOUR = Dimension(1, 4) // 1, 2, 3 ,4
-        val NINE = Dimension(1, 9) // 1, 2, 3, 4, 5, 6, 7, 8, 9
-        val SIXTEEN = Dimension(0, 15) // 0, 1, 2, ... A, B, C, D ,E, F
+        val FOUR = Dimension(1, 4)      // 1, 2, 3 ,4
+        val NINE = Dimension(1, 9)      // 1, 2, 3, 4, 5, 6, 7, 8, 9
+        val SIXTEEN = Dimension(0, 15)  // 0, 1, 2, ... A, B, C, D ,E, F
     }
 
     private fun readSudokuFile(dataFileName: String) : Map<Coordinate, SudokuCell> =
@@ -134,6 +134,38 @@ class SudokuTable(dim: Dimension, fileName: String) {
         }
         return result
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as SudokuTable
+
+        if (dimension != other.dimension) return false
+        if (minValue != other.minValue) return false
+        if (maxValue != other.maxValue) return false
+
+        //compare Maps
+        val map1 = this.cells
+        val map2 = other.cells
+        if (map1.size != map2.size) return false
+        for((coordinate, cell1) in map1){
+            val cell2 = map2[coordinate] ?: return false
+            if (cell1 != cell2) return false
+        }
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = dimension
+        result = 31 * result + minValue
+        result = 31 * result + maxValue
+        result = 31 * result + cells.hashCode()
+        return result
+    }
+
+
 }
 
 
